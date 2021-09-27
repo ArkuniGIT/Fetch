@@ -25,7 +25,7 @@ A sidebar where all pinned dogs will be visible and can be unpinned.
 
 # Tasks
 
-Install and setup frameworks (next.js, material-ui, useSwr, js-cookie, cypress).
+Install and setup frameworks (next.js, material-ui, swr, js-cookie, cypress).
 <br />
 Estimate: 1 hour
 
@@ -61,7 +61,7 @@ Estimate: 2 hours
 
 Next.js will be used because that is the entire point of this showcase. 😁
 
-UseSWR will be used to handle remote fetching because it also handles state management of the fetched resources.
+SWR will be used to handle remote fetching because it also handles state management of the fetched resources.
 
 Material-UI will be used as the designated design framework and provide all visual components. It saves a lot of time and deals with strange browser specific behaviour.
 
