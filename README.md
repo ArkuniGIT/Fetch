@@ -65,7 +65,7 @@ UseSWR will be used to handle remote fetching because it also handles state mana
 
 Material-UI will be used as the designated design framework and provide all visual components. It saves a lot of time and deals with strange browser specific behaviour.
 
-js-cookie will be used to handle cookies, and basically act as a substitute for having a remote storage.
+js-cookie will be used to handle cookies which will be used to persist pinned dogs.
 
 Cypress will be used for End-2-End testing. It might be a bit overkill, but even small silly dog apps deserves testing!
 
