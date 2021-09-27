@@ -1,6 +1,7 @@
 import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import React, { FC } from 'react'
 import styles from "./Layout.module.css";
+import Link from "next/link";
 
 const Layout: FC = (props) =>
 {
@@ -10,7 +11,11 @@ const Layout: FC = (props) =>
                 <Toolbar disableGutters>
                     <Container>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            Fetch! 🐶
+                        Fetch!
+                        &nbsp;
+                        <Link href="/">
+                            🐶
+                        </Link>
                         </Typography>
                     </Container>
                 </Toolbar>
