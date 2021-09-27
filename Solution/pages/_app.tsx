@@ -2,6 +2,8 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Layout from '../components/layout/Layout';
+import React from 'react';
+import { CssBaseline } from '@mui/material';
 
 const App = ({ Component, pageProps }: AppProps) =>
 {
@@ -15,6 +17,7 @@ const App = ({ Component, pageProps }: AppProps) =>
                     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
                 />
             </Head>
+            <CssBaseline />
             <Layout>
                 <Component {...pageProps} />
             </Layout>
