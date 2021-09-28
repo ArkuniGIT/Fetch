@@ -16,10 +16,11 @@ a {
 
 .imgBtn 
 {
-    cursor: pointer;
+    cursor: pointer;;
 }
 
 #nprogress .bar 
 {
+    z-index: 2000 !important;
     background-color: white !important;
 }
