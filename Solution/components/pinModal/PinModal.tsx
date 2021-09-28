@@ -1,6 +1,6 @@
 import { AppBar, Button, Card, CardContent, CardHeader, CardMedia, Container, IconButton, Modal, Stack, TextField, Toolbar, Typography } from '@mui/material';
 import React, { ChangeEvent, FC, useContext, useState } from 'react'
-import { Close } from "@mui/icons-material";
+import { Close, PushPin } from "@mui/icons-material";
 import { PinContext } from '../../contexts/PinContext';
 import FloatBox from '../floatBox/FloatBox';
 
@@ -69,6 +69,7 @@ const PinModal: FC<PinModalProps> = (props) =>
                                 <Button
                                     variant="contained"
                                     onClick={onSubmit}
+                                    endIcon={<PushPin />}
                                 >
                                     Pin
                                 </Button>
