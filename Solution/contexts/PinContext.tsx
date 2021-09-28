@@ -21,21 +21,24 @@ export const PinContextProvider: FC = (props) =>
 
     useEffect(() =>
     {
-        const cookieData = Cookies.get('pins');
-        if (!cookieData)
+        const pinsJson = Cookies.get('pins');
+        if (!pinsJson)
         {
             setPins([]);
             return;
         }
 
-        const cookiePins = JSON.parse(cookieData) as PinModel[];
-        if (!cookiePins)
+        console.log(pinsJson);
+        
+
+        const pins = JSON.parse(pinsJson) as PinModel[];
+        if (!pins)
         {
             setPins([]);
             return;
         }
 
-        setPins(cookiePins);
+        setPins(pins);
     }, []);
     
 
@@ -44,22 +47,25 @@ export const PinContextProvider: FC = (props) =>
         return <></>;
     }
 
+    const changePins = (newPins: PinModel[]) =>
+    {
+        const newPinsJson = JSON.stringify(newPins);
+
+        Cookies.set("pins", newPinsJson);
+
+        setPins(newPins);
+    }
+
     const addPin = (value: PinModel) =>
     {
         const newPins = [...pins, value];
-
-        Cookies.set("pins", newPins);
-
-        setPins(newPins);
+        changePins(newPins);
     }
 
     const removePin = (url: string) => 
     {
         const newPins = pins.filter(x => x.url !== url);
-
-        Cookies.set("pins", newPins);
-
-        setPins(newPins);
+        changePins(newPins);
     }
 
     const value: PinContextValue =
