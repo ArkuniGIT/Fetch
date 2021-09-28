@@ -2,9 +2,9 @@ import { GetStaticPaths, NextPage } from 'next'
 import React, { Fragment } from 'react'
 import DogCeoResponse from '../../dto/dogCeo/dogCeoReponse';
 import { GetStaticProps } from 'next'
-import { capitalize, List, ListItemButton, ListItemText } from '@mui/material';
+import { capitalize, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import Link from "next/link";
-import { ArrowRight } from "@mui/icons-material";
+import { ArrowRight, Pets } from "@mui/icons-material";
 import { Box } from '@mui/system';
 
 interface BreedPageProps
@@ -27,10 +27,12 @@ const BreedPage: NextPage<BreedPageProps> = (props) =>
                     <Fragment key={breed.key}>
                         <Link href={`/breed/${breed.key}`}>
                             <ListItemButton>
+                                <ListItemIcon>
+                                    <Pets />
+                                </ListItemIcon>
                                 <ListItemText
-                                    primary={breed.name}
+                                primary={breed.name}
                                 />
-                                <ArrowRight />
                             </ListItemButton>
                         </Link>
                     </Fragment>
