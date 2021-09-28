@@ -1,0 +1,12 @@
+.pinStack {
+
+}
+
+.pinContainer {
+    display: flex;
+    position: relative;
+}
+
+.img {
+    max-width: 100%;
+}
