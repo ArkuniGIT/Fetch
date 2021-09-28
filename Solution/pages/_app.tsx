@@ -7,10 +7,11 @@ import React from 'react';
 import { CssBaseline } from '@mui/material';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import { PinContextProvider } from '../contexts/PinContext';
 
-Router.events.on('routeChangeStart', () => NProgress.start()); 
-Router.events.on('routeChangeComplete', () => NProgress.done()); 
-Router.events.on('routeChangeError', () => NProgress.done());  
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 const App = ({ Component, pageProps }: AppProps) =>
 {
@@ -25,9 +26,11 @@ const App = ({ Component, pageProps }: AppProps) =>
                 />
             </Head>
             <CssBaseline />
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
+            <PinContextProvider>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </PinContextProvider>
         </>
 
     );
