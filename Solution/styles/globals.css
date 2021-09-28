@@ -14,6 +14,11 @@ a {
   box-sizing: border-box;
 }
 
+.imgBtn 
+{
+    cursor: pointer;
+}
+
 #nprogress .bar 
 {
     background-color: white !important;
