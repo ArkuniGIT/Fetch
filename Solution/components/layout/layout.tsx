@@ -1,5 +1,5 @@
 import { AppBar, Badge, Container, Drawer, IconButton, Toolbar, Typography } from '@mui/material';
-import { Menu } from "@mui/icons-material";
+import { PushPin } from "@mui/icons-material";
 import React, { FC, useContext, useState } from 'react'
 import styles from "./Layout.module.css";
 import Link from "next/link";
@@ -33,7 +33,7 @@ const Layout: FC = (props) =>
                         onClick={toggleDrawer}
                     >
                         <Badge badgeContent={pins.length} color="secondary">
-                            <Menu />
+                            <PushPin />
                         </Badge>
                     </IconButton>
                 </Toolbar>
