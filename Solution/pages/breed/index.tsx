@@ -1,9 +1,8 @@
-import { NextPage } from 'next'
+import { GetStaticPaths, NextPage } from 'next'
 import React, { Fragment } from 'react'
-import BreedModel from '../../models/BreedModel';
 import DogCeoResponse from '../../dto/dogCeo/dogCeoReponse';
 import { GetStaticProps } from 'next'
-import { capitalize, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { capitalize, List, ListItemButton, ListItemText } from '@mui/material';
 import Link from "next/link";
 import { ArrowRight } from "@mui/icons-material";
 import { Box } from '@mui/system';
@@ -46,16 +45,13 @@ export const getStaticProps: GetStaticProps<BreedPageProps> = async (context) =>
     const res = await fetch('https://dog.ceo/api/breeds/list/all');
     const data = (await res.json()) as DogCeoResponse<any>;
 
-    console.log(data);
-    
-
     const breeds = Object
         .keys(data.message)
         .map<BreedModel>(x => (
-        {
-            key: x,
-            name: capitalize(x)
-        }));
+            {
+                key: x,
+                name: capitalize(x)
+            }));
 
     return {
         props: {
@@ -63,6 +59,5 @@ export const getStaticProps: GetStaticProps<BreedPageProps> = async (context) =>
         },
     }
 }
-
 
 export default BreedPage
