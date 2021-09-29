@@ -74,7 +74,11 @@ const PinModal: FC<PinModalProps> = (props) =>
                         />
                         <CardMedia
                             component="img"
-                            height="256"
+                            sx={{
+                                width: 512,
+                                maxHeight: 256,
+                                objectFit: "contain"
+                            }}
                             image={url}
                             alt=""
                         />
