@@ -20,21 +20,27 @@ npm run cypress
 This is a short overview of the different high-level components the app will be made of. The app will be divided into pages and more loosely coupled elements like modals, sidebars and the top-level layout component.
 
 **Layout**
+<br />
 Every page will be contained inside the layout element.
 
 **Landing page**
+<br />
 A basic page that introduces the app.
 
 **Breed list page**
+<br />
 A page where the user chooses a dog breed from a list.
 
 **Dog collection page**
+<br />
 A page that shows pictures of the selected dog breed.
 
 **Pin modal**
+<br />
 A modal that contains a form which lets the user attach a comment to the picture they want to pin.
 
 **Sidebar**
+<br />
 A sidebar where all pinned dogs will be visible and can be unpinned.
 
 # Tasks
