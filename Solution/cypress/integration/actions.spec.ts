@@ -8,7 +8,8 @@ describe('Actions', () =>
         cy.get("#pinForm__comment").type("Who is a good doggy?!");
         cy.get("#pinForm__submit").click();
         cy.get("#drawerToggle").click();
-        cy.get("#pin_0 .deleteButton").click();
+        cy.get("#pin_0").click();
+        cy.get("#pinForm__remove").click();
         cy.contains("You have no pinned pictures.")
     })
 })
