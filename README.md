@@ -19,22 +19,22 @@ npm run cypress
 # Overview
 This is a short overview of the different high-level components the app will be made of. The app will be divided into pages and more loosely coupled elements like modals, sidebars and the top-level layout component.
 
-## Layout
+**Layout**
 Every page will be contained inside the layout element.
 
-## Landing page
+**Landing page**
 A basic page that introduces the app.
 
-## Breed list page
+**Breed list page**
 A page where the user chooses a dog breed from a list.
 
-## Dog collection page
+**Dog collection page**
 A page that shows pictures of the selected dog breed.
 
-## Pin modal
+**Pin modal**
 A modal that contains a form which lets the user attach a comment to the picture they want to pin.
 
-## Sidebar
+**Sidebar**
 A sidebar where all pinned dogs will be visible and can be unpinned.
 
 # Tasks
@@ -100,6 +100,14 @@ Material-UI will be used as the designated design framework and provide all visu
 js-cookie will be used to handle cookies which will be used to persist pinned dogs.
 
 Cypress will be used for End-2-End testing. It might be a bit overkill, but even small silly dog apps deserves testing!
+
+# Discussion
+
+The breed list page uses SSG because I made the assumption that there won't be a new dog breed every week.
+
+The dog collection page uses SSR because I again made an assumption that the API will occasionally be updated with new pictures. It probably doesn't happen often enough to warrant using SSR over SSG, since SSG is the usually the better way to serve pages. But since this is a showcase, I decided to mix things up a bit.
+
+From a UX perspective, I would like to have 1 less click for pinning and unpinning. Probably have a pin/unpin icon appear over each image when the user is hovering over, depending on their state.
 
 # Credit
 
