@@ -54,8 +54,7 @@ const BreedDetailsPage: NextPage<BreedDetailsProps> = (props) =>
                         <img
                             id={"dog_" + i}
                             className="imgBtn"
-                            src={`${url}`}
-                            srcSet={`${url}`}
+                            src={url}
                             alt={""}
                             width={200}
                             height={200}
