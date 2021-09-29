@@ -1,8 +1,9 @@
 import { Fab, Stack, Typography } from '@mui/material';
 import { Delete } from "@mui/icons-material";
-import React, { FC, Fragment, useContext } from 'react'
+import React, { FC, Fragment, useContext, useState } from 'react'
 import { PinContext } from '../../contexts/PinContext';
 import styles from "./Pins.module.css";
+import PinModal from '../pinModal/PinModal';
 
 interface PinsProps
 {
@@ -11,50 +12,49 @@ interface PinsProps
 
 const Pins: FC<PinsProps> = (props) =>
 {
-    const { pins, removePin } = useContext(PinContext);
+    const [modalUrl, setModalUrl] = useState<string>();
+    const { pins } = useContext(PinContext);
 
-    const onClickRemove = (url: string) => () =>
+    const onClickPin = (url: string) => () =>
     {
-        removePin(url);
+        setModalUrl(url);
+    }
+
+    const onCloseModal = () =>
+    {
+        setModalUrl(undefined);
     }
 
     return (
         <>
-            <Typography align="center" variant="h3" gutterBottom>
-                Pins
-            </Typography>
+            {modalUrl &&
+                <PinModal
+                    open={true}
+                    url={modalUrl}
+                    onClose={onCloseModal}
+                />
+            }
             {pins.length === 0 &&
                 <Typography align="center">
                     You have no pinned pictures.
                 </Typography>
             }
             {pins.length > 0 &&
-                <Stack gap={4}>
+                <Stack gap={2}>
                     {pins.map((pin, i) => (
                         <Fragment key={pin.url}>
-                            <div id={"pin_" + i}>
-                                <Stack>
-                                    <div className={styles.pinContainer}>
-                                        <Fab
-                                            className="deleteButton"
-                                            sx={{ position: "absolute", bottom: 16, right: 16 }}
-                                            size="small"
-                                            onClick={onClickRemove(pin.url)}
-                                        >
-                                            <Delete />
-                                        </Fab>
-                                        <img
-                                            src={pin.url}
-                                            loading="lazy"
-                                            className={styles.img}
-                                        />
-                                    </div>
-                                    {pin.comment &&
-                                        <Typography>
-                                            {pin.comment}
-                                        </Typography>
-                                    }
-                                </Stack>
+                            <div id={"pin_" + i} className={styles.pinContainer}>
+                                <img
+                                    src={pin.url}
+                                    loading="lazy"
+                                    className={styles.pinImage}
+                                    onClick={onClickPin(pin.url)}
+                                />
+                                {pin.comment &&
+                                    <Typography className={styles.pinComment}>
+                                        {pin.comment}
+                                    </Typography>
+                                }
                             </div>
                         </Fragment>
                     ))}

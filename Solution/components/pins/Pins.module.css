@@ -1,12 +1,16 @@
-.pinStack {
-
-}
-
 .pinContainer {
     display: flex;
     position: relative;
+    flex-direction: column;
 }
 
-.img {
+.pinImage {
     max-width: 100%;
+    cursor: pointer;
+}
+
+.pinComment {
+    padding-top: 8px;
+    text-align: center;
+    font-style: italic;
 }
