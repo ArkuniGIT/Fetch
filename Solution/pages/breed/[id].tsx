@@ -16,7 +16,7 @@ interface BreedDetailsProps
 const BreedDetailsPage: NextPage<BreedDetailsProps> = (props) =>
 {
     const { urls } = props;
-    const [url, setUrl] = useState<string>();
+    const [modalUrl, setModalUrl] = useState<string>();
     const theme = useTheme();
     const upSm = useMediaQuery(theme.breakpoints.up('sm'));
     const upMd = useMediaQuery(theme.breakpoints.up('md'));
@@ -28,20 +28,20 @@ const BreedDetailsPage: NextPage<BreedDetailsProps> = (props) =>
 
     const onClickImg = (url: string) => () =>
     {
-        setUrl(url);
+        setModalUrl(url);
     }
 
     const onCloseModal = () =>
     {
-        setUrl(undefined);
+        setModalUrl(undefined);
     }
 
     return (
         <>
-            {url &&
+            {modalUrl &&
                 <PinModal
                     open={true}
-                    url={url}
+                    url={modalUrl}
                     onClose={onCloseModal}
                 />
             }
