@@ -6,13 +6,19 @@ export interface PinContextValue
 {
     pins: PinModel[];
     addPin: (value: PinModel) => void;
+    editPin: (url: string, value: PinModel) => void;
+    getPin: (url: string) => PinModel | undefined;
     removePin: (url: string) => void;
+    hasPin: (url: string) => boolean;
 }
 
 export const PinContext = React.createContext<PinContextValue>({
     pins: [],
-    addPin: x => { },
-    removePin: x => { }
+    addPin: () => { },
+    getPin: () => undefined,
+    editPin: () => { },
+    removePin: () => { },
+    hasPin: () => false,
 });
 
 export const PinContextProvider: FC = (props) =>
@@ -27,9 +33,6 @@ export const PinContextProvider: FC = (props) =>
             setPins([]);
             return;
         }
-
-        console.log(pinsJson);
-        
 
         const pins = JSON.parse(pinsJson) as PinModel[];
         if (!pins)
@@ -62,17 +65,39 @@ export const PinContextProvider: FC = (props) =>
         changePins(newPins);
     }
 
+    const getPin = (url: string) =>
+    {
+        const pin = pins.find(x => x.url === url);
+        return pin;
+    }
+
+    const editPin = (url: string, value: PinModel) =>
+    {
+        const pinIndex = pins.findIndex(x => x.url === url);
+        const newPins = [...pins];
+        newPins[pinIndex] = value;
+        changePins(newPins);
+    }
+
     const removePin = (url: string) => 
     {
         const newPins = pins.filter(x => x.url !== url);
         changePins(newPins);
     }
 
+    const hasPin = (url: string) => 
+    {
+        return !!pins.find(x => x.url === url);
+    }
+
     const value: PinContextValue =
     {
         pins,
         addPin,
-        removePin
+        getPin,
+        editPin,
+        removePin,
+        hasPin
     };
 
     return (
