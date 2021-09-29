@@ -28,6 +28,7 @@ const Layout: FC = (props) =>
                         </Link>
                     </Typography>
                     <IconButton
+                        id="drawerToggle"
                         color="inherit"
                         edge="end"
                         onClick={toggleDrawer}

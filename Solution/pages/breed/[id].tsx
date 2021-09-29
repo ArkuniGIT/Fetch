@@ -47,9 +47,10 @@ const BreedDetailsPage: NextPage<BreedDetailsProps> = (props) =>
                 {capitalize(id as string)}
             </Typography>
             <ImageList cols={cols} gap={16}>
-                {urls.map((url) => (
+                {urls.map((url, i) => (
                     <ImageListItem key={url}>
                             <img
+                                id={"dog_" + i}
                                 className="imgBtn"
                                 src={`${url}`}
                                 srcSet={`${url}`}

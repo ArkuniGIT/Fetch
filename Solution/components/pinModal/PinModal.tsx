@@ -59,6 +59,7 @@ const PinModal: FC<PinModalProps> = (props) =>
                         <CardContent>
                             <Stack gap={2}>
                                 <TextField
+                                    id="pinForm__comment"
                                     multiline
                                     rows={4}
                                     label="Comment"
@@ -67,6 +68,7 @@ const PinModal: FC<PinModalProps> = (props) =>
                                     onChange={onChangeCommnet}
                                 />
                                 <Button
+                                    id="pinForm__submit"
                                     variant="contained"
                                     onClick={onSubmit}
                                     endIcon={<PushPin />}

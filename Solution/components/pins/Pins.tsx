@@ -30,29 +30,32 @@ const Pins: FC<PinsProps> = (props) =>
             }
             {pins.length > 0 &&
                 <Stack gap={4}>
-                    {pins.map((pin) => (
+                    {pins.map((pin, i) => (
                         <Fragment key={pin.url}>
-                            <Stack>
-                                <div className={styles.pinContainer}>
-                                    <Fab
-                                        sx={{ position: "absolute", bottom: 16, right: 16 }}
-                                        size="small"
-                                        onClick={onClickRemove(pin.url)}
-                                    >
-                                        <Delete />
-                                    </Fab>
-                                    <img
-                                        src={pin.url}
-                                        loading="lazy"
-                                        className={styles.img}
-                                    />
-                                </div>
-                                {pin.comment &&
-                                    <Typography>
-                                        {pin.comment}
-                                    </Typography>
-                                }
-                            </Stack>
+                            <div id={"pin_" + i}>
+                                <Stack>
+                                    <div className={styles.pinContainer}>
+                                        <Fab
+                                            className="deleteButton"
+                                            sx={{ position: "absolute", bottom: 16, right: 16 }}
+                                            size="small"
+                                            onClick={onClickRemove(pin.url)}
+                                        >
+                                            <Delete />
+                                        </Fab>
+                                        <img
+                                            src={pin.url}
+                                            loading="lazy"
+                                            className={styles.img}
+                                        />
+                                    </div>
+                                    {pin.comment &&
+                                        <Typography>
+                                            {pin.comment}
+                                        </Typography>
+                                    }
+                                </Stack>
+                            </div>
                         </Fragment>
                     ))}
                 </Stack>

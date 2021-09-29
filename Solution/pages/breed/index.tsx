@@ -26,12 +26,12 @@ const BreedPage: NextPage<BreedPageProps> = (props) =>
                 {props.breeds.map((breed) => (
                     <Fragment key={breed.key}>
                         <Link href={`/breed/${breed.key}`}>
-                            <ListItemButton>
+                            <ListItemButton id={breed.key}>
                                 <ListItemIcon>
                                     <Pets />
                                 </ListItemIcon>
                                 <ListItemText
-                                primary={breed.name}
+                                    primary={breed.name}
                                 />
                             </ListItemButton>
                         </Link>

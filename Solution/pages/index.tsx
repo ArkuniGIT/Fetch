@@ -16,7 +16,7 @@ const HomePage: NextPage = () =>
             </Typography>
             <br />
             <Link href="/breed">
-                <Button variant="contained">
+                <Button id="startButton" variant="contained">
                     Show me cute doggies!
                 </Button>
             </Link>

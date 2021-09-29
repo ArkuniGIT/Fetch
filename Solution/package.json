@@ -6,6 +6,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "cypress": "cypress open",
         "lint": "next lint"
     },
     "dependencies": {
@@ -14,7 +15,6 @@
         "@mui/icons-material": "^5.0.1",
         "@mui/material": "^5.0.1",
         "@types/nprogress": "^0.2.0",
-        "cypress": "^8.4.1",
         "js-cookie": "^3.0.1",
         "next": "11.1.2",
         "nprogress": "^0.2.0",
@@ -25,6 +25,7 @@
     "devDependencies": {
         "@types/js-cookie": "^2.2.7",
         "@types/react": "17.0.24",
+        "cypress": "^8.5.0",
         "eslint": "7.32.0",
         "eslint-config-next": "11.1.2",
         "typescript": "4.4.3"
