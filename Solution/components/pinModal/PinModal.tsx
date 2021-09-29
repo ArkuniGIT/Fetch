@@ -1,6 +1,6 @@
 import { AppBar, Button, Card, CardContent, CardHeader, CardMedia, Container, IconButton, Modal, Stack, TextField, Toolbar, Typography } from '@mui/material';
 import React, { ChangeEvent, FC, useContext, useState } from 'react'
-import { Close, PushPin } from "@mui/icons-material";
+import { Close, PushPin, Delete } from "@mui/icons-material";
 import { PinContext } from '../../contexts/PinContext';
 import FloatBox from '../floatBox/FloatBox';
 
@@ -15,15 +15,16 @@ interface PinModalProps
 const PinModal: FC<PinModalProps> = (props) =>
 {
     const { open, url, onClose } = props;
-    const [comment, setComment] = useState("");
-    const { addPin } = useContext(PinContext);
+    const { addPin, getPin, editPin, removePin, hasPin } = useContext(PinContext);
+    const pin = getPin(url);
+    const [comment, setComment] = useState(pin?.comment || "");
 
-    const onChangeCommnet = (e: ChangeEvent<HTMLInputElement>) => 
+    const onChangeComment = (e: ChangeEvent<HTMLInputElement>) => 
     {
         setComment(e.currentTarget.value);
     }
 
-    const onSubmit = () => 
+    const onAddSubmit = () => 
     {
         addPin({
             url,
@@ -34,6 +35,27 @@ const PinModal: FC<PinModalProps> = (props) =>
             onClose();
     }
 
+    const onEditSubmit = () => 
+    {
+        editPin(url, {
+            url,
+            comment
+        });
+
+        if (onClose)
+            onClose();
+    }
+
+    const onRemoveSubmit = () => 
+    {
+        removePin(url);
+
+        if (onClose)
+            onClose();
+    }
+
+    const editMode = hasPin(url);
+
     return (
         <Modal
             open={open}
@@ -43,7 +65,7 @@ const PinModal: FC<PinModalProps> = (props) =>
                 <FloatBox>
                     <Card>
                         <CardHeader
-                            title={"Pin"}
+                            title={editMode && "Edit pin" || "Pin"}
                             action={
                                 <IconButton onClick={onClose}>
                                     <Close />
@@ -65,16 +87,30 @@ const PinModal: FC<PinModalProps> = (props) =>
                                     label="Comment"
                                     value={comment}
                                     fullWidth
-                                    onChange={onChangeCommnet}
+                                    onChange={onChangeComment}
                                 />
-                                <Button
-                                    id="pinForm__submit"
-                                    variant="contained"
-                                    onClick={onSubmit}
-                                    endIcon={<PushPin />}
-                                >
-                                    Pin
-                                </Button>
+                                <Stack direction="row" gap={2}>
+                                    <Button
+                                        id="pinForm__submit"
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={editMode && onEditSubmit || onAddSubmit}
+                                        endIcon={<PushPin />}
+                                    >
+                                        {editMode && "Edit pin" || "Pin"}
+                                    </Button>
+                                    {editMode &&
+                                        <Button
+                                            id="pinForm__remove"
+                                            color="error"
+                                            variant="contained"
+                                            onClick={onRemoveSubmit}
+                                            endIcon={<Delete />}
+                                        >
+                                            Unpin
+                                        </Button>
+                                    }
+                                </Stack>
                             </Stack>
                         </CardContent>
                     </Card>

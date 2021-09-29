@@ -1,11 +1,12 @@
-import { ImageList, ImageListItem, Fab, useMediaQuery, useTheme, Typography, capitalize } from '@mui/material'
-import { ArrowBack } from '@mui/icons-material';
+import { ImageList, ImageListItem, Fab, useMediaQuery, useTheme, Typography, capitalize, Box, Avatar } from '@mui/material'
+import { ArrowBack, PushPin } from '@mui/icons-material';
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import DogCeoResponse from '../../dto/dogCeo/dogCeoReponse';
 import PinModal from '../../components/pinModal/PinModal';
+import { PinContext } from '../../contexts/PinContext';
 
 interface BreedDetailsProps 
 {
@@ -20,6 +21,7 @@ const BreedDetailsPage: NextPage<BreedDetailsProps> = (props) =>
     const upSm = useMediaQuery(theme.breakpoints.up('sm'));
     const upMd = useMediaQuery(theme.breakpoints.up('md'));
     const router = useRouter();
+    const { pins, hasPin } = useContext(PinContext);
 
     const { id } = router.query;
     const cols = upMd && 3 || upSm && 2 || 1;
@@ -49,17 +51,24 @@ const BreedDetailsPage: NextPage<BreedDetailsProps> = (props) =>
             <ImageList cols={cols} gap={16}>
                 {urls.map((url, i) => (
                     <ImageListItem key={url}>
-                            <img
-                                id={"dog_" + i}
-                                className="imgBtn"
-                                src={`${url}`}
-                                srcSet={`${url}`}
-                                alt={""}
-                                width={200}
-                                height={200}
-                                loading="lazy"
-                                onClick={onClickImg(url)}
-                            />
+                        <img
+                            id={"dog_" + i}
+                            className="imgBtn"
+                            src={`${url}`}
+                            srcSet={`${url}`}
+                            alt={""}
+                            width={200}
+                            height={200}
+                            loading="lazy"
+                            onClick={onClickImg(url)}
+                        />
+                        {hasPin(url) &&
+                            <Box position="absolute" bottom={16} right={16}>
+                                <Avatar variant="rounded" sx={{ bgcolor: "gray" }}>
+                                    <PushPin />
+                                </Avatar>
+                            </Box>
+                        }
                     </ImageListItem>
                 ))}
             </ImageList>
