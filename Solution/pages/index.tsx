@@ -8,6 +8,9 @@ const HomePage: NextPage = () =>
 {
     return (
         <Box textAlign="center">
+            <img className={"rounded"} src="https://images.dog.ceo/breeds/retriever-chesapeake/n02099849_1050.jpg" />
+            <br />
+            <br />
             <Typography variant="h3" gutterBottom>
                 Welcome to Fetch!
             </Typography>
